@@ -75,6 +75,9 @@ set wildmode=list:longest
 " Wildmenu will ignore files with these extensions.
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
+set list
+set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
+
 " PLUGINS -------------------------------- {{{
 
 " Initialzing plug
@@ -82,6 +85,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'dense-analysis/ale'
 	Plug 'csexton/trailertrash.vim'
 	Plug 'preservim/nerdtree'
+	Plug 'ryanoasis/vim-devicons'
 	Plug 'Xuyuanp/nerdtree-git-plugin'
 call plug#end()
 
