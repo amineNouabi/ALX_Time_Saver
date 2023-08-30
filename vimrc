@@ -9,6 +9,7 @@
 "               
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""               
 
+set encoding=utf-8
 
 " Disable compatibility with vi which can cause unexpected issues.
 set nocompatible
@@ -76,7 +77,7 @@ set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 
 set list
-set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
+set listchars=eol:⏎,tab:▸\ ,trail:␠,nbsp:⎵
 
 " PLUGINS -------------------------------- {{{
 
@@ -84,14 +85,19 @@ set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
 call plug#begin('~/.vim/plugged')
 	Plug 'dense-analysis/ale'
 	Plug 'csexton/trailertrash.vim'
-	Plug 'preservim/nerdtree'
-	Plug 'ryanoasis/vim-devicons'
-	Plug 'Xuyuanp/nerdtree-git-plugin'
+
+	Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " }}}
 
 " VIMSCRIPT -------------------------------------------------------------- {{{
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 " Compile via vim
 function! Compile()
